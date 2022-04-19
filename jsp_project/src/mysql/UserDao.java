@@ -31,7 +31,6 @@ public class UserDao {
             conn = DatabaseUtil.getConnection();
 
             if (conn == null) return rt;
-
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, user.getId());
             pstmt.setString(2, user.getPw());
@@ -58,7 +57,7 @@ public class UserDao {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String query = "UPDATE USER SET PW=?, GRADE=? WHERE ID=?";
+        String query = "UPDATE USER SET PW=? WHERE ID=?";
         try {
             conn = DatabaseUtil.getConnection();
 
@@ -66,8 +65,7 @@ public class UserDao {
 
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, user.getPw());
-            pstmt.setString(2, user.getGrade());
-            pstmt.setString(3, user.getId());
+            pstmt.setString(2, user.getId());
             rt = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -12,7 +12,6 @@ public class DatabaseUtil {
             Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection(dbURL, dbID, dbPW);
         } catch (Exception e) {
-            System.out.println("abc");
             e.printStackTrace();
         }
         return null;
