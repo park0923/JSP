@@ -30,6 +30,7 @@
             position: relative;
             width: 20%;
             min-height: 50%;
+            min-width: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
