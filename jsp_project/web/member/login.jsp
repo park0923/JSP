@@ -34,6 +34,7 @@
       {
         position: relative;
         width: 20%;
+        min-width: 300px;
         min-height: 50%;
         display: flex;
         justify-content: center;
