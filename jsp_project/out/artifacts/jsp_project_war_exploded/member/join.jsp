@@ -30,7 +30,7 @@
 %>
 <script>
     alert("회원가입을 실패 했습니다.");
-    location.href = 'join.html';
+    location.href = 'joinform.jsp';
 </script>
 <%
         }
