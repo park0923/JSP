@@ -67,20 +67,15 @@
     </tr>
 
     <tr>
-      <td>Email</td>
-      <td><input type="email" name="email" value="<%= user.getEmail()%>"></td>
-    </tr>
-
-    <tr>
-      <td>Address</td>
-      <td><input type="text" name="address" value="<%= user.getAddress()%>"></td>
+      <td>Grade</td>
+      <td><%= user.getGrade()%></td>
     </tr>
 
   </table>
   <br/>
   <div class="c">
     <input type="button" value="수정" onclick="confirmModify()">
-    <input type="button" value="취소" onclick="location.hre='login.jsp'">
+    <input type="button" value="취소" onclick="location.href='main.jsp'">
   </div>
 </form>
 

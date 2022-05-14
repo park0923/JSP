@@ -34,6 +34,7 @@
       {
         position: relative;
         width: 20%;
+        min-width: 300px;
         min-height: 50%;
         display: flex;
         justify-content: center;
@@ -131,14 +132,14 @@
             <span>ID</span>
             <div class="box">
               <div class="icon"><ion-icon name="person"></ion-icon></div>
-              <input type="text">
+              <input type="text" name="id">
             </div>
           </div>
           <div class="inputbox">
             <span>Password</span>
             <div class="box">
               <div class="icon"><ion-icon name="lock-closed"></ion-icon></div>
-              <input type="password">
+              <input type="password" name="pw">
             </div>
           </div>
           <div class="inputbox">

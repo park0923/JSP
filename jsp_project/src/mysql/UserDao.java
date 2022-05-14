@@ -26,17 +26,17 @@ public class UserDao {
         int rt = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String query = "INSERT INTO USER VALUES (?,?,?,?)";
+        String query = "INSERT INTO member (member_id, member_pw, member_name, member_phone) VALUES (?,?,?,?)";
         try {
             conn = DatabaseUtil.getConnection();
 
             if (conn == null) return rt;
-
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, user.getId());
             pstmt.setString(2, user.getPw());
             pstmt.setString(3, user.getName());
             pstmt.setString(4, user.getGrade());
+            System.out.println(user.getId()+user.getPw()+user.getName());
             pstmt.executeUpdate();
             rt = USER_JOIN_SUCCESS;
         } catch (SQLException e) {
@@ -58,7 +58,7 @@ public class UserDao {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String query = "UPDATE USER SET PW=?, GRADE=? WHERE ID=?";
+        String query = "UPDATE USER SET PW=? WHERE ID=?";
         try {
             conn = DatabaseUtil.getConnection();
 
@@ -66,8 +66,7 @@ public class UserDao {
 
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, user.getPw());
-            pstmt.setString(2, user.getGrade());
-            pstmt.setString(3, user.getId());
+            pstmt.setString(2, user.getId());
             rt = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +86,7 @@ public class UserDao {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String query = "SELECT ID FROM USER WHERE ID = ?";
+        String query = "SELECT member_id FROM member WHERE member_id = ?";
 
         try {
             conn = DatabaseUtil.getConnection();

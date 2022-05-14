@@ -1,4 +1,6 @@
-<%--
+<%@ page import="beans.BoardDto" %>
+<%@ page import="mysql.BoardDao" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: wndgk
   Date: 2022-04-13
@@ -6,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="board" class="beans.BoardDto"/>
 <html>
 <head>
     <title>공지사항</title>
@@ -39,88 +42,100 @@
 
         }
 
-        .container #menu {
+        .container .menu {
             width: 20%;
             height: 100%;
         }
 
-        .container #table {
-            width: 60%;
-            height: 80%;
-        }
-
-        .container #table table {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            border: 1px solid #dddddd;
-            background-color: white;
-            padding: 0;
-            margin: 0;
-        }
-
-        .container #table table thead {
-            height: 5%;
+        .container .table {
+            position: relative;
+            display: flex;
+            flex-direction: column;
             background: white;
+            padding: 20px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            width: 65%;
+            height: 80%;
+
         }
-        .container #table table thead tr th{
-            height: 5%;
-            background-color: #eeeeee;
-            text-align: center;
-        }
-        .container #table table tbody
+        .container .table .cardHeader
         {
-            background-color: #eeeeee;
+            display: flex;
+            justify-content: start;
+            align-items: flex-start;
+            height: 60px;
+        }
+        .container .table .cardHeader h2
+        {
+            font-weight: 600;
+            color: #4187f6;
+        }
+        .container .table table {
+            width: 100%;
+            height: 80%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .container .table table thead td{
+            font-weight: 600;
             text-align: center;
         }
+        .container .table table tr
+        {
+            color: black;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .container .table table tr:last-child
+        {
+            border-bottom: none;
+        }
+        .container .table table tbody tr:hover
+        {
+            background: #4187f6;
+            color: white;
+        }
+        .container .table table tr td
+        {
+            padding: 10px;
+            text-align: center;
+        }
+        .container .table table tbody tr td:nth-child(2)
+        {
+            text-align: start;
+        }
+
     </style>
 </head>
 <body>
-<div>
-    <%@include file="header.jsp" %>
-</div>
-<div class="container">
-    <div id="menu">
-        <%@include file="menu.jsp" %>
+    <div class="container">
+        <div class="menu">
+            <%@include file="menu.jsp" %>
+        </div>
+        <div class="table">
+            <div class="cardHeader">
+                <h2>공지사항</h2>
+            </div>
+        <table border="1">
+            <tr><td> 글 번호 </td><td> 제목 </td><td> 작성자 </td><td> 날짜 </td> <td> 조회수 </td></tr>
+                <%
+                    BoardDao dao = BoardDao.getInstance();
+                    ResultSet rs = dao.getBoard();
+                    int num=1;
+                    while(rs.next()){
+                %>
+
+            <tr><td><%=num%> </td>
+                <td><a href="noticeContent.jsp?id=<%=rs.getInt("id")%>"><%=rs.getString("title")%></a></td>
+                <td><%=rs.getString("writer")%> </td>
+                <td><%=rs.getString("createDay")%> </td>
+                <td><%=rs.getInt("readcount")%> </td></tr>
+                <%
+                    num++;
+                }
+                %>
+        </div>
     </div>
-    <div id="table">
-        <table>
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>안녕하세요</td>
-                <td>홍길동</td>
-                <td>2020-07-13</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>안녕하세요</td>
-                <td>홍길동</td>
-                <td>2020-07-13</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>안녕하세요</td>
-                <td>홍길동</td>
-                <td>2020-07-13</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>안녕하세요</td>
-                <td>홍길동</td>
-                <td>2020-07-13</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+    <button onclick="location.href='main.jsp'">뒤로 가기</button>
 </body>
 </html>

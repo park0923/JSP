@@ -30,6 +30,7 @@
             position: relative;
             width: 20%;
             min-height: 50%;
+            min-width: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -139,28 +140,28 @@
                 <span>ID</span>
                 <div class="box">
                     <div class="icon"><ion-icon name="person"></ion-icon></div>
-                    <input type="text">
+                    <input type="text" name="id">
                 </div>
             </div>
             <div class="inputbox">
                 <span>Password</span>
                 <div class="box">
                     <div class="icon"><ion-icon name="lock-closed"></ion-icon></div>
-                    <input type="password">
+                    <input type="password" name="pw">
                 </div>
             </div>
             <div class="inputbox">
                 <span>Name</span>
                 <div class="box">
                     <div class="icon"><ion-icon name="pricetag"></ion-icon></div>
-                    <input type="text">
+                    <input type="text" name="name">
                 </div>
             </div>
             <div class="inputbox">
                 <span>Grade</span>
                 <div class="box">
                     <div class="icon"><ion-icon name="book"></ion-icon></div>
-                    <input type="text">
+                    <input type="text" name="grade">
                 </div>
             </div>
             <div class="inputbox">
