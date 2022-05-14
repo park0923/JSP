@@ -74,7 +74,6 @@
         .inputbox .box
         {
             display: flex;
-
         }
         .inputbox .box .icon
         {
