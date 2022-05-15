@@ -4,13 +4,15 @@ public class UserDto {
     private String id;
     private String pw;
     private String name;
-    private String grade;
+    private String phone;
+    private String email;
 
-    public UserDto(String id, String pw, String name, String grade) {
+    public UserDto(String id, String pw, String name, String phone, String email) {
         this.id = id;
         this.pw = pw;
         this.name = name;
-        this.grade = grade;
+        this.phone = phone;
+        this.email = email;
     }
 
     public UserDto() {}
@@ -39,11 +41,19 @@ public class UserDto {
         this.name = name;
     }
 
-    public String getGrade() {
-        return grade;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

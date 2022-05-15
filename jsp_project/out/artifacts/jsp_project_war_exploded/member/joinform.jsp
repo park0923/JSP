@@ -158,10 +158,17 @@
                 </div>
             </div>
             <div class="inputbox">
-                <span>Grade</span>
+                <span>Phone</span>
                 <div class="box">
                     <div class="icon"><ion-icon name="book"></ion-icon></div>
-                    <input type="text" name="grade">
+                    <input type="text" name="phone">
+                </div>
+            </div>
+            <div class="inputbox">
+                <span>Email</span>
+                <div class="box">
+                    <div class="icon"><ion-icon name="book"></ion-icon></div>
+                    <input type="text" name="email">
                 </div>
             </div>
             <div class="inputbox">

@@ -26,17 +26,16 @@ public class UserDao {
         int rt = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String query = "INSERT INTO member (member_id, member_pw, member_name, member_phone) VALUES (?,?,?,?)";
+        String query = "INSERT INTO member (member_id, member_pw, member_name, member_phone, member_email) VALUES (?,?,?,?,?)";
         try {
             conn = DatabaseUtil.getConnection();
-
             if (conn == null) return rt;
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, user.getId());
             pstmt.setString(2, user.getPw());
             pstmt.setString(3, user.getName());
-            pstmt.setString(4, user.getGrade());
-            System.out.println(user.getId()+user.getPw()+user.getName());
+            pstmt.setString(4, user.getPhone());
+            pstmt.setString(5, user.getEmail());
             pstmt.executeUpdate();
             rt = USER_JOIN_SUCCESS;
         } catch (SQLException e) {
@@ -49,7 +48,6 @@ public class UserDao {
                 e.printStackTrace();
             }
         }
-
         return rt;
     }
 
@@ -118,7 +116,7 @@ public class UserDao {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String query = "SELECT PW FROM USER WHERE ID = ?";
+        String query = "SELECT member_pw FROM member WHERE member_id = ?";
 
         try {
             conn = DatabaseUtil.getConnection();
@@ -128,7 +126,7 @@ public class UserDao {
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                if (pw.equals(rs.getString("pw")))
+                if (pw.equals(rs.getString("member_pw")))
                     rt = USER_LOGIN_SUCCESS;
                 else
                     rt = USER_LOGIN_FAIL;
@@ -155,7 +153,7 @@ public class UserDao {
         ResultSet rs = null;
         UserDto user = null;
 
-        String query = "SELECT * FROM USER WHERE ID = ?";
+        String query = "SELECT * FROM member WHERE member_id = ?";
 
         try {
             conn = DatabaseUtil.getConnection();
@@ -165,10 +163,11 @@ public class UserDao {
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                user = new UserDto(rs.getString("id"),
-                        rs.getString("pw"),
-                        rs.getString("name"),
-                        rs.getString("grade"));
+                user = new UserDto(rs.getString("member_id"),
+                        rs.getString("member_pw"),
+                        rs.getString("member_name"),
+                        rs.getString("member_phone"),
+                        rs.getString("member_email"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -67,8 +67,13 @@
     </tr>
 
     <tr>
-      <td>Grade</td>
-      <td><%= user.getGrade()%></td>
+      <td>Phone</td>
+      <td><%= user.getPhone()%></td>
+    </tr>
+
+    <tr>
+      <td>Email</td>
+      <td><%= user.getEmail()%></td>
     </tr>
 
   </table>
