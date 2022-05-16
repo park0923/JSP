@@ -40,7 +40,7 @@
     session.setAttribute("name", user.getName());
     session.setAttribute("id", user.getId());
     session.setAttribute("isLogin", true);
-    response.sendRedirect("main.jsp");
+    response.sendRedirect("mainview.jsp");
 
   }
 %>
