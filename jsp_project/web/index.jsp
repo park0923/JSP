@@ -89,24 +89,20 @@
 
       .container
       {
-        position: relative;
+        position: absolute;
         width: 90%;
-        min-height: 50%;
+        height: 50%;
         display: flex;
         flex-direction: row;
         background: #4682B4;
-        justify-content: flex-start;
-        align-items: center;
+        justify-content: space-between;
         padding: 0;
       }
 
       .container  img
       {
-        position: absolute;
+        position: relative;
         display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        clear: both;
       }
       .container  img#coding
       {
@@ -115,14 +111,14 @@
       }
       .container .middle_title
       {
-        position: absolute;
+        position: relative;
         width: 30%;
         height: 100%;
-        background: #444444;
         display: flex;
+        margin: 10px;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: start;
+        align-items: start;
       }
       .container .middle_title h1
       {
@@ -154,17 +150,12 @@
       </ul>
     </header>
     <div class="container">
-        <img src="images/coding.jpg" id="coding" ><div class="middle_title">
-      <h1>컴퓨터소프트웨어공학전공</h1>
-      <h3>Computersoftware Engineering</h3>
-      <p>컴퓨터소프트웨어공학과 강의실 예약 시스템 </p>
-    </div></img>
-<%--        <div class="middle_title">--%>
-<%--          <h1>컴퓨터소프트웨어공학전공</h1>--%>
-<%--          <h3>Computersoftware Engineering</h3>--%>
-<%--          <p>컴퓨터소프트웨어공학과 강의실 예약 시스템 </p>--%>
-<%--        </div>--%>
+      <img src="images/coding.jpg" id="coding" />
+      <div class="middle_title">
+        <h1>컴퓨터소프트웨어공학전공</h1>
+        <h3>Computersoftware Engineering</h3>
+        <p>컴퓨터소프트웨어공학과 <br>강의실 예약 시스템 </p>
+      </div>
     </div>
-
   </body>
 </html>

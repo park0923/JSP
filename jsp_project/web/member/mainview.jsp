@@ -12,55 +12,53 @@
     <link rel="stylesheet" type="text/css" href="/mainview.css">
 </head>
 <body>
+<%
+    if (session.getAttribute("isLogin") == null) {
+%>
+<script>
+    alert("로그인이 필요합니다.");
+    location.href = "login.jsp";
+</script>
+<%
+    }
+%>
 <div class="container">
     <div class="navigation">
         <ul>
-            <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
-                    <span class="title">Brand Name</span>
+            <li class="list actives">
+                <a href="mainview.jsp">
+                    <img src="../images/symbol.png" class="symbol" />
+                    <span class="title">컴퓨터소프트웨어공학과</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-            <li>
+            <li class="list">
                 <a href="#">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <span class="title">Customers</span>
+                    <span class="title">마이페이지</span>
                 </a>
             </li>
-            <li>
+            <li class="list">
                 <a href="#">
-                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <span class="title">Message</span>
+                    <span class="icon"><ion-icon name="today"></ion-icon></span>
+                    <span class="title">강의실 예약</span>
                 </a>
             </li>
-            <li>
+            <li class="list">
                 <a href="#">
-                    <span class="icon"><ion-icon name="help"></ion-icon></span>
-                    <span class="title">Help</span>
+                    <span class="icon"><ion-icon name="search"></ion-icon></span>
+                    <span class="title">예약 조회</span>
                 </a>
             </li>
-            <li>
+            <li class="list">
                 <a href="#">
-                    <span class="icon"><ion-icon name="settings"></ion-icon></span>
-                    <span class="title">Setting</span>
+                    <span class="icon"><ion-icon name="calendar-clear"></ion-icon></span>
+                    <span class="title">강의실 조회</span>
                 </a>
             </li>
-            <li>
+            <li class="list">
                 <a href="#">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <span class="title">Password</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="log-out"></ion-icon></span>
-                    <span class="title">Sign out</span>
+                    <span class="icon"><ion-icon name="chatbox-ellipses"></ion-icon></span>
+                    <span class="title">문의하기</span>
                 </a>
             </li>
         </ul>
@@ -71,52 +69,45 @@
             <div class="toggle">
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
-            <div class="search">
-                <label>
-                    <input type="text" placeholder="Search Here">
-                    <ion-icon name="search-outline"></ion-icon>
-                </label>
-            </div>
             <div class="user">
-                <h3>UserID</h3>
+                <ul>
+                    <li> <%=session.getAttribute("name")%></li>
+                    <li><a href="logout.jsp">로그아웃</a></li>
+                </ul>
             </div>
         </div>
 
         <div class="cardBox">
             <div class="card">
                 <div>
-                    <div class="number">1,504</div>
-                    <div class="cardName">Daily Views</div>
+                    <div onclick=location.href="#" class="cardName">강의실 예약</div>
                 </div>
                 <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <ion-icon name="today"></ion-icon>
                 </div>
             </div>
             <div class="card">
                 <div>
-                    <div class="number">80</div>
-                    <div class="cardName">Sales</div>
+                    <div onclick=location.href="#" class="cardName">예약 조회</div>
                 </div>
                 <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <ion-icon name="search"></ion-icon>
                 </div>
             </div>
             <div class="card">
                 <div>
-                    <div class="number">284</div>
-                    <div class="cardName">Comments</div>
+                    <div onclick=location.href="#" class="cardName">강의실 조회</div>
                 </div>
                 <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <ion-icon name="calendar-clear"></ion-icon>
                 </div>
             </div>
             <div class="card">
                 <div>
-                    <div class="number">1,504</div>
-                    <div class="cardName">Earning</div>
+                    <div onclick=location.href="#" class="cardName">문의하기</div>
                 </div>
                 <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <ion-icon name="chatbox-ellipses"></ion-icon>
                 </div>
             </div>
         </div>
@@ -124,80 +115,87 @@
         <div class="details">
             <div class="noticelist">
                 <div class="cardHeader">
-                    <h2>공지사항</h2>
+                    <h2>Today</h2>
+                    <a href="#" class="btn">View All</a>
                 </div>
-                <table>
-                    <thead>
-                    <tr>
-                        <td>name</td>
-                        <td>name</td>
-                        <td>name</td>
-                        <td>name</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    <tr>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                        <td>asdasdad</td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>구분</td>
+                            <td>915</td>
+                            <td>916</td>
+                            <td>918</td>
+                            <td>911</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>2교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>3교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>4교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>5교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>6교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>7교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>8교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        <tr>
+                            <td>9교시</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                            <td>asdasdad</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
             </div>
         </div>
     </div>
@@ -214,11 +212,11 @@
         main.classList.toggle('active')
     }
 
-    let list = document.querySelectorAll('.navigation li');
+    let list = document.querySelectorAll('.list');
     function activeLink(){
         list.forEach((item) =>
-            item.classList.remove('hovered'));
-        this.classList.add('hovered');
+            item.classList.remove('actives'));
+        this.classList.add('actives');
     }
     list.forEach((item) =>
         item.addEventListener('click', activeLink));

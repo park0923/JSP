@@ -7,6 +7,7 @@
 :root
 {
     --blue: #287bff;
+    --blue2: #87CEFA ;
     --white: #fff;
     --grey: #f5f5f5;
     --black1: #222;
@@ -50,8 +51,13 @@ body
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
+.navigation ul li.actives
+{
+    background: var(--white);
+    color: var(--blue);
+}
 .navigation ul li:hover,
-.navigation ul li.hovered
+.navigation ul li.actives
 {
     background: var(--white);
 }
@@ -69,9 +75,31 @@ body
     color: var(--white);
 }
 .navigation ul li:hover a,
-.navigation ul li.hovered a
+.navigation ul li.actives a
 {
     color: var(--blue);
+}
+.navigation ul li a .logo
+{
+    position: relative;
+    display: block;
+    padding-top: 15px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 72px;
+    text-align: center;
+}
+.navigation ul li a img
+{
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    line-height: 72px;
+    font-size: 20px;
+    text-align: center;
 }
 .navigation ul li a .icon
 {
@@ -204,6 +232,24 @@ body
     left: 10px;
     font-size: 1.2em;
 }
+.user ul
+{
+    display: flex;
+    padding-right: 15px;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.user ul li
+{
+    list-style: none;
+    margin-left: 20px;
+}
+.user ul li a
+{
+    color: var(--black1);
+    text-decoration: none;
+}
 
 .cardBox
 {
@@ -223,19 +269,12 @@ body
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-}
-.cardBox .card .number
-{
-    position: relative;
-    font-weight: 500;
-    font-size: 2.5em;
-    color: var(--blue);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
 }
 .cardBox .card .cardName
 {
-    color: var(--black2);
-    font-size: 1.1em;
+    color: var(--blue);
+    font-size: 30px;
     margin-top: 5px;
 }
 .cardBox .card .iconBx
@@ -270,7 +309,7 @@ body
     min-height: 500px;
     background: var(--white);
     padding: 20px;
-    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.5);
     border-radius: 20px;
 }
 
@@ -292,6 +331,12 @@ body
     background: var(--blue);
     text-decoration: none;
     color: var(--white);
+    border-radius: 6px;
+}
+.btn:hover
+{
+    background: var(--blue2);
+    color: var(--blue);
 }
 .details table
 {
@@ -302,6 +347,7 @@ body
 .details table thead td
 {
     font-weight: 600;
+    text-align: center;
 }
 .details .noticelist table tr
 {
@@ -320,12 +366,13 @@ body
 .details .noticelist table tr td
 {
     padding: 10px;
+    text-align: center;
 }
-.details .noticelist table tr td:last-child
-{
-    text-align: end;
-}
-.details .noticelist table tr td:nth-child(3)
-{
-    text-align: end;
-}
+/*.details .noticelist table tr td:last-child*/
+/*{*/
+/*    text-align: end;*/
+/*}*/
+/*.details .noticelist table tr td:nth-child(3)*/
+/*{*/
+/*    text-align: end;*/
+/*}*/
