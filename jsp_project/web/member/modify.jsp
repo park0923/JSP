@@ -9,6 +9,10 @@
 <%@ page import="mysql.UserDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+  UserDao dao = UserDao.getInstance();
+  String id = (String) session.getAttribute("id");
+  String pw = request.getParameter("pw");
+  int rt = dao.confirmLogin(id, pw);
   if (session.getAttribute("isLogin") == null) {
 %>
 <script>
@@ -16,7 +20,14 @@
   location.href = "login.jsp";
 </script>
 <%
-} else {
+} else if(rt == UserDao.USER_LOGIN_FAIL) {
+%>
+<script>
+  alert("비밀번호가 틀립니다.")
+  history.back();
+</script>
+<%
+}else if(rt == UserDao.USER_LOGIN_SUCCESS){
   UserDto user = UserDao.getInstance().getUser((String) session.getAttribute("id"));
 
 %>
@@ -51,29 +62,28 @@
   <table>
     <tr>
       <td>ID</td>
-      <td><%= user.getId()%>
-      </td>
+      <td><input type="text" name="id" value="<%= user.getId()%>"></td>
     </tr>
 
     <tr>
       <td>Password</td>
       <td><input type="password" name="pw"></td>
+      <td><button>비밀번호 변경</button></td>
     </tr>
 
     <tr>
       <td>이름</td>
-      <td><%= user.getName()%>
-      </td>
+      <td><input type="text" name="name" value="<%= user.getName()%>"></td>
     </tr>
 
     <tr>
       <td>Phone</td>
-      <td><%= user.getPhone()%></td>
+      <td><input type="text" name="phone" value="<%= user.getPhone()%>"></td>
     </tr>
 
     <tr>
       <td>Email</td>
-      <td><%= user.getEmail()%></td>
+      <td><input type="text" name="email" value="<%= user.getEmail()%>"></td>
     </tr>
 
   </table>

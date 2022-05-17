@@ -6,13 +6,51 @@ public class UserDto {
     private String name;
     private String phone;
     private String email;
+    private String position;
 
-    public UserDto(String id, String pw, String name, String phone, String email) {
-        this.id = id;
-        this.pw = pw;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
+    public static class Builder{
+        private String id;
+        private String pw;
+        private String name;
+        private String phone;
+        private String email;
+
+        public Builder id(String id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder pw(String pw){
+            this.pw = pw;
+            return this;
+        }
+
+        public Builder name(String name){
+            this.name = name;
+            return this;
+        }
+
+        public Builder phone(String phone){
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder email(String email){
+            this.email = email;
+            return this;
+        }
+
+        public UserDto build() {
+            return new UserDto(this);
+        }
+    }
+
+    public UserDto(Builder builder){
+        this.id = builder.id;
+        this.pw = builder.pw;
+        this.name = builder.name;
+        this.phone = builder.phone;
+        this.email = builder.email;
     }
 
     public UserDto() {}
@@ -55,5 +93,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

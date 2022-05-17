@@ -44,3 +44,11 @@ function confirmModify() {
     }
     document.modify_form.submit();
 }
+
+function confirmCheck(){
+    if (confirm("정말로 아이디를 삭제하시겠습니까??")){
+        location.href="delete_Id.jsp";
+    }else{
+        return;
+    }
+}

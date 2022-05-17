@@ -39,6 +39,7 @@
     }
     session.setAttribute("name", user.getName());
     session.setAttribute("id", user.getId());
+    session.setAttribute("position", dao.getposition(user.getId()));
     session.setAttribute("isLogin", true);
     response.sendRedirect("main.jsp");
 

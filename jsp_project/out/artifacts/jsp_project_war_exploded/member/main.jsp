@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="form.js"></script>
     <title>Home</title>
 </head>
 <body>
@@ -19,17 +20,27 @@
         alert("로그인이 필요합니다.");
         location.href = "login.jsp";
     </script>
-        <%
-    }else {
+
+    <%
+        }else{
     %>
-            <%=session.getAttribute("name")%>님 안녕하세요<br/><br/>
+        <hr>
+        <%=session.getAttribute("name")%>님 안녕하세요<br/><br/>
+    <%
+        if(session.getAttribute("position").equals("admin")){
+    %>
+            <button onclick="location.href='member_Management.jsp'">회원관리</button>
     <%
         }
     %>
-<hr>
-<button onclick="location.href='logout.jsp'">로그아웃</button>
-<button onclick="location.href='modify.jsp'">회원정보 수정</button>
-<button onclick="location.href='writeForm.jsp'">글쓰기</button>
-<button onclick="location.href='notice.jsp'">공지사항</button>
+        <button onclick="confirmCheck()">아이디 삭제</button>
+        <button onclick="location.href='check_password.jsp'">회원정보 수정</button>
+        <button onclick="location.href='logout.jsp'">로그아웃</button>
+        <button onclick="location.href='writeForm.jsp'">글쓰기</button>
+        <button onclick="location.href='notice.jsp'">공지사항</button>
+    <%
+        }
+    %>
+
 </body>
 </html>
