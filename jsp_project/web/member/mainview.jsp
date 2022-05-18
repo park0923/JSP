@@ -32,31 +32,31 @@
                 </a>
             </li>
             <li class="list">
-                <a href="#">
+                <a href="/member/mypage.jsp">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
                     <span class="title">마이페이지</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
+                <a href="/member/reservation.jsp">
                     <span class="icon"><ion-icon name="today"></ion-icon></span>
                     <span class="title">강의실 예약</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
+                <a href="/member/reservationcheck.jsp">
                     <span class="icon"><ion-icon name="search"></ion-icon></span>
                     <span class="title">예약 조회</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
+                <a href="/member/classroominquiry.jsp">
                     <span class="icon"><ion-icon name="calendar-clear"></ion-icon></span>
                     <span class="title">강의실 조회</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
+                <a href="/member/inquiry.jsp">
                     <span class="icon"><ion-icon name="chatbox-ellipses"></ion-icon></span>
                     <span class="title">문의하기</span>
                 </a>
@@ -116,7 +116,7 @@
             <div class="noticelist">
                 <div class="cardHeader">
                     <h2>Today</h2>
-                    <a href="#" class="btn">View All</a>
+                    <a href="/member/classroominquiry.jsp" class="btn">View All</a>
                 </div>
 
                     <table>
