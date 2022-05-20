@@ -15,6 +15,8 @@ public class UserDao {
     public static int USER_LOGIN_FAIL = 5;
     public static int USER_DELETE_SUCCESS = 6;
     public static int USER_DELETE_FAIL = 7;
+    public static int USER_UPDATE_SUCCESS = 8;
+    public static int USER_UPDATE_FAIL = 9;
     private static UserDao instance = new UserDao();
 
     public static UserDao getInstance() {
@@ -71,8 +73,10 @@ public class UserDao {
             pstmt.setString(3, user.getPhone());
             pstmt.setString(4, user.getEmail());
             pstmt.setString(5, id);
-            rt = pstmt.executeUpdate();
+            pstmt.executeUpdate();
+            rt=USER_UPDATE_SUCCESS;
         } catch (SQLException e) {
+            rt=USER_UPDATE_FAIL;
             e.printStackTrace();
         } finally {
             try {
@@ -175,6 +179,9 @@ public class UserDao {
                         .name(rs.getString("member_name"))
                         .phone(rs.getString("member_phone"))
                         .email(rs.getString("member_email"))
+                        .position(rs.getString("member_position"))
+                        .state(rs.getString("member_state"))
+                        .warning(rs.getString("member_warning"))
                         .build();
             }
         } catch (SQLException e) {
@@ -222,7 +229,7 @@ public class UserDao {
         return rt;
     }
 
-    public String getposition(String id) {
+    public String getPosition(String id) {
         int rt = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -241,7 +248,6 @@ public class UserDao {
             rs = pstmt.executeQuery();
             if(rs.next()){
                 st= rs.getString("member_position");
-                System.out.println(st);
                 return st;
             }
         } catch (SQLException e) {
@@ -274,5 +280,74 @@ public class UserDao {
             e.printStackTrace();
         }
         return rs;
+    }
+
+    public int updatePassword(String id, String pw){
+        int rt = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String query = "UPDATE member SET member_pw=? WHERE member_id = ?";
+
+        try {
+            conn = DatabaseUtil.getConnection();
+            if (conn == null) return rt;
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, pw);
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+            rt = USER_DELETE_SUCCESS;
+        } catch (SQLException e) {
+            rt = USER_DELETE_FAIL;
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rt;
+    }
+
+    public int adminUpdateUser(String id, UserDto user) {
+        int rt = 0;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String query = "UPDATE member SET member_id=?, member_pw=?, member_name=?, member_phone=?, member_email=? " +
+                ",member_position=?, member_state=?, member_warning=? WHERE member_id=?";
+        try {
+            conn = DatabaseUtil.getConnection();
+
+            if (conn == null) return rt;
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, user.getId());
+            pstmt.setString(2, user.getPw());
+            pstmt.setString(3, user.getName());
+            pstmt.setString(4, user.getPhone());
+            pstmt.setString(5, user.getEmail());
+            pstmt.setString(6, user.getPosition());
+            pstmt.setString(7, user.getState());
+            pstmt.setString(8, user.getWarning());
+            pstmt.setString(9, id);
+            pstmt.executeUpdate();
+            rt=USER_UPDATE_SUCCESS;
+        } catch (SQLException e) {
+            rt=USER_UPDATE_FAIL;
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rt;
     }
 }

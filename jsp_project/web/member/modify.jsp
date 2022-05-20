@@ -68,7 +68,6 @@
     <tr>
       <td>Password</td>
       <td><input type="password" name="pw"></td>
-      <td><button>비밀번호 변경</button></td>
     </tr>
 
     <tr>
@@ -93,6 +92,7 @@
     <input type="button" value="취소" onclick="location.href='main.jsp'">
   </div>
 </form>
+<td><button onclick="changePassWordPopUp()">비밀번호 변경</button></td>
 
 </body>
 </html>

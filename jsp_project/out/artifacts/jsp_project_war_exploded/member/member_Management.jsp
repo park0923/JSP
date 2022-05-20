@@ -16,7 +16,7 @@
 <body>
     <table>
         <tr>
-            <td>아이디</td><td>이름</td><td>이메일</td><td>전화번호</td><td>유형</td><td>예약 가능 상태</td><td>경고</td>
+            <td>아이디</td><td>이름</td><td>이메일</td><td>전화번호</td><td>유형</td><td>예약 가능 상태</td><td>경고</td><td>버튼</td>
         </tr>
         <%
             UserDao dao = UserDao.getInstance();
@@ -24,15 +24,18 @@
             System.out.println(rs);
             while(rs.next()){
         %>
+        <form action="admin_modify_form.jsp" method="post">
         <tr>
-            <td><%=rs.getString("member_id")%></td>
-            <td><%=rs.getString("member_email")%></td>
-            <td><%=rs.getString("member_phone")%></td>
-            <td><%=rs.getString("member_position")%></td>
-            <td><%=rs.getString("member_state")%></td>
-            <td><%=rs.getString("member_warning")%></td>
-            <td><button >수정</button></td>
+            <td><input type="text" name="id" value="<%=rs.getString("member_id")%>" readonly></td>
+            <td><input type="text" value="<%=rs.getString("member_name")%>" readonly></td>
+            <td><input type="text" value="<%=rs.getString("member_email")%>" readonly></td>
+            <td><input type="text" value="<%=rs.getString("member_phone")%>" readonly></td>
+            <td><input type="text" value="<%=rs.getString("member_position")%>" readonly></td>
+            <td><input type="text" value="<%=rs.getString("member_state")%>" readonly></td>
+            <td><input type="text" value="<%=rs.getString("member_warning")%>" readonly></td>
+            <td><input type="submit" value="수정"></td>
         </tr>
+        </form>
         <%
             }
         %>

@@ -7,6 +7,8 @@ public class UserDto {
     private String phone;
     private String email;
     private String position;
+    private String state;
+    private String warning;
 
     public static class Builder{
         private String id;
@@ -14,6 +16,9 @@ public class UserDto {
         private String name;
         private String phone;
         private String email;
+        private String position;
+        private String state;
+        private String warning;
 
         public Builder id(String id){
             this.id = id;
@@ -40,6 +45,20 @@ public class UserDto {
             return this;
         }
 
+        public Builder position(String position){
+            this.position = position;
+            return this;
+        }
+
+        public Builder warning(String warning){
+            this.warning = warning;
+            return this;
+        }
+
+        public Builder state(String state){
+            this.state = state;
+            return this;
+        }
         public UserDto build() {
             return new UserDto(this);
         }
@@ -51,6 +70,9 @@ public class UserDto {
         this.name = builder.name;
         this.phone = builder.phone;
         this.email = builder.email;
+        this.position = builder.position;
+        this.state = builder.state;
+        this.warning = builder.warning;
     }
 
     public UserDto() {}
@@ -101,5 +123,21 @@ public class UserDto {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getWarning() {
+        return warning;
+    }
+
+    public void setWarning(String warning) {
+        this.warning = warning;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
