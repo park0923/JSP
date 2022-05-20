@@ -36,12 +36,15 @@
   history.back();
 </script>
 <%
+
     }
+
+//        System.out.println(user.getName());
     session.setAttribute("name", user.getName());
     session.setAttribute("id", user.getId());
-    session.setAttribute("position", dao.getposition(user.getId()));
+    session.setAttribute("position", dao.getPosition(user.getId()));
     session.setAttribute("isLogin", true);
-    response.sendRedirect("mainview.jsp");
+    response.sendRedirect("main.jsp");
 
   }
 %>

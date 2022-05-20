@@ -20,23 +20,30 @@
     String id = (String) session.getAttribute("id");
     String pw = request.getParameter("pw");
     if(dao.confirmLogin(id,pw) == UserDao.USER_LOGIN_SUCCESS){
-        if (dao.updateUser(id, user) == UserDao.USER_EXISTENT) {
+        if (dao.updateUser(id, user) == UserDao.USER_UPDATE_SUCCESS) {
             session.setAttribute("name", user.getName());
             session.setAttribute("id", user.getId());
             session.setAttribute("isLogin", true);
             response.sendRedirect("main.jsp");
-    }
 %>
-<script>
-    alert("회원정보 수정 완료");
-</script>
+            <script>
+                alert("회원정보 수정 완료");
+            </script>
 <%
-} else {
+        }else{
 %>
-<script>
-    alert("회원정보 수정 실패");
-    history.back();
-</script>
+            <script>
+                alert("회원정보 수정 실패");
+                history.back();
+            </script>
+<%
+        }
+    } else {
+%>
+            <script>
+                alert("비밀번호가 틀렸습니다.");
+                history.back();
+            </script>
 <%
     }
 %>

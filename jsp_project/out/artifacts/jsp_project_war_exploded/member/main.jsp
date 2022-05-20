@@ -15,6 +15,7 @@
 <h2>
     <%
         if (session.getAttribute("isLogin") == null) {
+
     %>
     <script>
         alert("로그인이 필요합니다.");
@@ -23,6 +24,7 @@
 
     <%
         }else{
+            System.out.println((String) session.getAttribute("name"));
     %>
         <hr>
         <%=session.getAttribute("name")%>님 안녕하세요<br/><br/>
@@ -38,6 +40,7 @@
         <button onclick="location.href='logout.jsp'">로그아웃</button>
         <button onclick="location.href='writeForm.jsp'">글쓰기</button>
         <button onclick="location.href='notice.jsp'">공지사항</button>
+        <button onclick="location.href='reservationFirst.jsp'">예약하기</button>
     <%
         }
     %>
