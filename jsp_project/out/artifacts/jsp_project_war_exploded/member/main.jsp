@@ -15,10 +15,11 @@
 <h2>
     <%
         if (session.getAttribute("isLogin") == null) {
+
     %>
     <script>
         alert("로그인이 필요합니다.");
-        location.href = "login.jsp";
+        location.href = "loginForm.jsp";
     </script>
 
     <%
@@ -34,7 +35,7 @@
         }
     %>
         <button onclick="confirmCheck()">아이디 삭제</button>
-        <button onclick="location.href='check_password.jsp'">회원정보 수정</button>
+        <button onclick="location.href='checkPwForm.jsp'">회원정보 수정</button>
         <button onclick="location.href='logout.jsp'">로그아웃</button>
         <button onclick="location.href='writeForm.jsp'">글쓰기</button>
         <button onclick="location.href='notice.jsp'">공지사항</button>
