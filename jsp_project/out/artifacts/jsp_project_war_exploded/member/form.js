@@ -47,14 +47,14 @@ function confirmModify() {
 
 function confirmCheck(){
     if (confirm("정말로 아이디를 삭제하시겠습니까??")){
-        location.href="delete_Id.jsp";
+        location.href="deleteMember.jsp";
     }else{
         return;
     }
 }
 
 function changePassWordPopUp(){
-    open("change_password.jsp",'pop01' ,'top=10, left=10, width=360, height=400, status=no, menubar=no, toolbar=no, resizable=no');
+    open("changePwForm.jsp",'pop01' ,'top=10, left=10, width=360, height=400, status=no, menubar=no, toolbar=no, resizable=no');
 }
 
 function confirmChange() {

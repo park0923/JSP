@@ -2,14 +2,14 @@
   Created by IntelliJ IDEA.
   User: wndgk
   Date: 2022-05-18
-  Time: 오전 10:47
+  Time: 오전 10:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>문의하기</title>
-    <link rel="stylesheet" type="text/css" href="/member/inquiry.css">
+    <title>예약 조회</title>
+    <link rel="stylesheet" type="text/css" href="reservationcheck.css">
 </head>
 <body>
 <%
@@ -17,7 +17,7 @@
 %>
 <script>
     alert("로그인이 필요합니다.");
-    location.href = "loginForm.jsp";
+    location.href = "../home/loginForm.jsp";
 </script>
 <%
     }
@@ -27,7 +27,7 @@
         <ul>
             <li class="list">
                 <a href="/member/mainForm.jsp">
-                    <img src="../images/symbol.png" class="symbol" />
+                    <img src="../../images/symbol.png" class="symbol" />
                     <span class="title">컴퓨터소프트웨어공학과</span>
                 </a>
             </li>
@@ -38,13 +38,13 @@
                 </a>
             </li>
             <li class="list">
-                <a href="/reservation/reservation.jsp">
+                <a href="/member/reservation.jsp">
                     <span class="icon"><ion-icon name="today"></ion-icon></span>
                     <span class="title">강의실 예약</span>
                 </a>
             </li>
-            <li class="list">
-                <a href="/reservation/reservationcheck.jsp">
+            <li class="list actives">
+                <a href="/member/reservation/reservationcheck.jsp">
                     <span class="icon"><ion-icon name="search"></ion-icon></span>
                     <span class="title">예약 조회</span>
                 </a>
@@ -55,7 +55,7 @@
                     <span class="title">강의실 조회</span>
                 </a>
             </li>
-            <li class="list actives">
+            <li class="list">
                 <a href="/member/inquiry.jsp">
                     <span class="icon"><ion-icon name="chatbox-ellipses"></ion-icon></span>
                     <span class="title">문의하기</span>
@@ -72,30 +72,15 @@
             <div class="user">
                 <ul>
                     <li> <%=session.getAttribute("name")%></li>
-                    <li><a href="../home/logout.jsp">로그아웃</a></li>
+                    <li><a href="../../home/logout.jsp">로그아웃</a></li>
                 </ul>
             </div>
         </div>
 
+
+
         <div class="details">
-            <div class="title">
-                <h1>문의하기</h1>
-                <hr/>
-            </div>
-            <div class="inquiryBox">
-                <form>
-                    <div class="inputBox">
-                        <input type="text" placeholder="제목을 입력하세요.">
-                    </div>
-                    <div class="inputBox">
-                        <textarea typeof="text" placeholder="내용을 입력하세요"></textarea>
-                    </div>
-                    <div class="inputBox">
-                        <input type="submit" value="작성">
-                        <input type="reset" value="초기화">
-                    </div>
-                </form>
-            </div>
+
         </div>
     </div>
 </div>

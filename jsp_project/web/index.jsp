@@ -145,15 +145,15 @@
         <a href="index.jsp" class="logo">컴퓨터소프트웨어공학전공</a>
       </div>
       <ul>
-        <li><a href="/member/joinform.jsp">Sing Up</a></li>
-        <li><a href="/member/login.jsp">Log In</a></li>
+        <li><a href="/home/joinform.jsp">Sing Up</a></li>
+        <li><a href="/home/loginForm.jsp">Log In</a></li>
       </ul>
     </header>
     <div class="container">
       <img src="images/coding.jpg" id="coding" />
       <div class="middle_title">
         <h1>컴퓨터소프트웨어공학전공</h1>
-        <h3>Computersoftware Engineering</h3>
+        <h3>ComputerSoftware Engineering</h3>
         <p>컴퓨터소프트웨어공학과 <br>강의실 예약 시스템 </p>
       </div>
     </div>

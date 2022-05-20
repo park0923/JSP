@@ -1,20 +1,18 @@
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%--
   Created by IntelliJ IDEA.
-  User: wndgk
-  Date: 2022-05-18
-  Time: 오전 10:31
+  User: 김선웅
+  Date: 2022-04-11
+  Time: 오후 2:44
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="beans.UserDto" %>
+<%@ page import="mysql.UserDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>강의실 예약</title>
-    <link rel="stylesheet" type="text/css" href="/member/reservation/reservation.css">
-</head>
-<script type="text/javascript" src="reservation/selectTime.js"></script>
-<body>
 <%
+  UserDao dao = UserDao.getInstance();
+  String id = (String) session.getAttribute("id");
+  String pw = request.getParameter("pw");
+  int rt = dao.confirmLogin(id, pw);
   if (session.getAttribute("isLogin") == null) {
 %>
 <script>
@@ -22,31 +20,65 @@
   location.href = "loginForm.jsp";
 </script>
 <%
-  }
+} else if(rt == UserDao.USER_LOGIN_FAIL) {
 %>
+<script>
+  alert("비밀번호가 틀립니다.")
+  history.back();
+</script>
+<%
+}else if(rt == UserDao.USER_LOGIN_SUCCESS){
+  UserDto user = UserDao.getInstance().getUser((String) session.getAttribute("id"));
+
+%>
+<html>
+<head>
+  <title>Join</title>
+  <script src="../form.js"></script>
+  <link rel="stylesheet" type="text/css" href="/member/mypage.css">
+  <style>
+    table {
+      /*width: 100%;*/
+      border: 1px solid #444444;
+      padding: 5px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    td {
+      /*width: 100%;*/
+      /*border: 1px solid #444444;*/
+    }
+
+    .c {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
 <div class="container">
   <div class="navigation">
     <ul>
       <li class="list">
         <a href="/member/mainForm.jsp">
-          <img src="../images/symbol.png" class="symbol" />
+          <img src="../../images/symbol.png" class="symbol" />
           <span class="title">컴퓨터소프트웨어공학과</span>
         </a>
       </li>
-      <li class="list">
+      <li class="list actives">
         <a href="/member/mypage.jsp">
           <span class="icon"><ion-icon name="person"></ion-icon></span>
           <span class="title">마이페이지</span>
         </a>
       </li>
-      <li class="list actives">
+      <li class="list">
         <a href="/member/reservation.jsp">
           <span class="icon"><ion-icon name="today"></ion-icon></span>
           <span class="title">강의실 예약</span>
         </a>
       </li>
       <li class="list">
-        <a href="/member/reservation/reservationcheck.jsp">
+        <a href="/reservation/reservationcheck.jsp">
           <span class="icon"><ion-icon name="search"></ion-icon></span>
           <span class="title">예약 조회</span>
         </a>
@@ -74,52 +106,50 @@
       <div class="user">
         <ul>
           <li> <%=session.getAttribute("name")%></li>
-          <li><a href="../home/logout.jsp">로그아웃</a></li>
+          <li><a href="logout.jsp">로그아웃</a></li>
         </ul>
       </div>
     </div>
 
-
-
     <div class="details">
-      <section>
-        <label for="start">Start date:</label>
-        <%
-          Date date = new Date();
-          SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-          String strDate = simpleDate.format(date);
-        %>
+      <form action="memberUpdateProcess.jsp" method="post" name="modify_form">
+        <table>
+          <tr>
+            <td>ID</td>
+            <td><input type="text" name="id" value="<%= user.getId()%>"></td>
+          </tr>
 
-        <form name="input" method="post" action="reservation/seatSelection.jsp">
-          <input type="date" id="start" name="date"
-                 value=<%= strDate%>
-                         min="2022-05-13" max="2030-12-31">
-          <select name="startTime" onchange="categoryChange(this)">
-            <option value="0">시작 시간 선택</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-          </select>
+          <tr>
+            <td>Password</td>
+            <td><input type="password" name="pw"></td>
+          </tr>
 
-          <select name="endTime" id="changeTime">
-            <option value="">종료 시간 선택</option>
-            <option>시작 시간을 선택하세요</option>
-          </select>
+          <tr>
+            <td>이름</td>
+            <td><input type="text" name="name" value="<%= user.getName()%>"></td>
+          </tr>
 
-          <br>
-          인원:
-          <input type="number" name="person" min="1" max="10" step="1" value="1">
-          <input type="submit" value="선택">
-        </form>
-      </section>
+          <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone" value="<%= user.getPhone()%>"></td>
+          </tr>
+
+          <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" value="<%= user.getEmail()%>"></td>
+          </tr>
+
+        </table>
+        <br/>
+        <div class="c">
+          <input type="button" value="수정" onclick="confirmModify()">
+          <input type="button" value="취소" onclick="location.href='../mainForm.jsp'">
+        </div>
+      </form>
+      <div>
+        <button onclick="confirmCheck()">아이디 삭제</button>
+        <button onclick="changePassWordPopUp()">비밀번호 변경</button>
+      </div>
     </div>
   </div>
 </div>
@@ -144,5 +174,11 @@
   list.forEach((item) =>
           item.addEventListener('click', activeLink));
 </script>
+
+
+
 </body>
 </html>
+<%
+  }
+%>

@@ -17,7 +17,7 @@
 %>
 <script>
     alert("로그인이 필요합니다.");
-    location.href = "login.jsp";
+    location.href = "loginForm.jsp";
 </script>
 <%
     }
@@ -26,7 +26,7 @@
     <div class="navigation">
         <ul>
             <li class="list">
-                <a href="/member/mainview.jsp">
+                <a href="/member/mainForm.jsp">
                     <img src="../images/symbol.png" class="symbol" />
                     <span class="title">컴퓨터소프트웨어공학과</span>
                 </a>
@@ -38,13 +38,13 @@
                 </a>
             </li>
             <li class="list">
-                <a href="/member/reservation.jsp">
+                <a href="/reservation/reservation.jsp">
                     <span class="icon"><ion-icon name="today"></ion-icon></span>
                     <span class="title">강의실 예약</span>
                 </a>
             </li>
             <li class="list">
-                <a href="/member/reservationcheck.jsp">
+                <a href="/reservation/reservationcheck.jsp">
                     <span class="icon"><ion-icon name="search"></ion-icon></span>
                     <span class="title">예약 조회</span>
                 </a>
@@ -72,7 +72,7 @@
             <div class="user">
                 <ul>
                     <li> <%=session.getAttribute("name")%></li>
-                    <li><a href="logout.jsp">로그아웃</a></li>
+                    <li><a href="../home/logout.jsp">로그아웃</a></li>
                 </ul>
             </div>
         </div>
