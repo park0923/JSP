@@ -9,7 +9,94 @@
 <html>
 <head>
     <title>문의하기</title>
-    <link rel="stylesheet" type="text/css" href="/member/inquiry.css">
+    <link rel="stylesheet" type="text/css" href="/member/inquiry/inquiry.css">
+    <style>
+        .details .inquiryBox
+        {
+            position: relative;
+            width: 70%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            border-radius: 20px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.5);
+        }
+
+        .details .inquiryBox from
+        {
+            position: relative;
+            background: var(--black1);
+        }
+        .details .inquiryBox .inputbox
+        {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .details .inquiryBox .inputbox input
+        {
+            position: relative;
+            width: 80%;
+            border: none;
+            outline: black;
+            padding: 10px 10px;
+            border-radius: 30px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.2);
+            font-size: 15px;
+        }
+        .details .inquiryBox .inputbox button
+        {
+            position: relative;
+            width: 80%;
+            border: none;
+            outline: black;
+            padding: 10px 10px;
+            border-radius: 30px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.2);
+            font-size: 15px;
+        }
+        .details .inquiryBox .inputbox textarea
+        {
+            position: relative;
+            width: 80%;
+            min-height: 600px;
+            border: none;
+            outline: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.2);
+            font-size: 20px;
+        }
+        .details .inquiryBox .inputbox input[type="submit"]
+        {
+            background: var(--blue);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            width: 40%;
+        }
+        .details .inquiryBox .inputbox input[type="submit"]:hover
+        {
+            background: var(--blue2);
+        }
+        .details .inquiryBox .inputbox button
+        {
+            background: var(--blue);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            width: 40%;
+        }
+        .details .inquiryBox .inputbox button:hover
+        {
+            background: var(--blue2);
+        }
+    </style>
 </head>
 <body>
 <%
@@ -27,7 +114,7 @@
         <ul>
             <li class="list">
                 <a href="/member/mainForm.jsp">
-                    <img src="../images/symbol.png" class="symbol" />
+                    <img src="../../images/symbol.png" class="symbol" />
                     <span class="title">컴퓨터소프트웨어공학과</span>
                 </a>
             </li>
@@ -56,7 +143,7 @@
                 </a>
             </li>
             <li class="list actives">
-                <a href="/member/inquiry.jsp">
+                <a href="/member/inquiry/inquirylist.jsp">
                     <span class="icon"><ion-icon name="chatbox-ellipses"></ion-icon></span>
                     <span class="title">문의하기</span>
                 </a>
@@ -72,7 +159,7 @@
             <div class="user">
                 <ul>
                     <li> <%=session.getAttribute("name")%></li>
-                    <li><a href="../home/logout.jsp">로그아웃</a></li>
+                    <li><a href="../../home/logout.jsp">로그아웃</a></li>
                 </ul>
             </div>
         </div>
@@ -83,16 +170,16 @@
                 <hr/>
             </div>
             <div class="inquiryBox">
-                <form>
+                <form action="inquiryprocess.jsp" method="post" name="inquiry_form">
                     <div class="inputBox">
-                        <input type="text" placeholder="제목을 입력하세요.">
+                        <input type="text" name="title" placeholder="제목을 입력하세요.">
                     </div>
                     <div class="inputBox">
-                        <textarea typeof="text" placeholder="내용을 입력하세요"></textarea>
+                        <textarea typeof="text" name="inquiry" placeholder="내용을 입력하세요"></textarea>
                     </div>
                     <div class="inputBox">
                         <input type="submit" value="작성">
-                        <input type="reset" value="초기화">
+                        <button type="button" onclick="location.href='/member/inquiry/inquirylist.jsp'">취소</button>
                     </div>
                 </form>
             </div>
@@ -116,6 +203,7 @@
         list.forEach((item) =>
             item.classList.remove('actives'));
         this.classList.add('actives');
+
     }
     list.forEach((item) =>
         item.addEventListener('click', activeLink));

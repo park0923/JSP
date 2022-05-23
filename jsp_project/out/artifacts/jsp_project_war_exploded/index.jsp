@@ -116,6 +116,7 @@
         height: 100%;
         display: flex;
         margin: 10px;
+        min-width: 500px;
         flex-direction: column;
         justify-content: start;
         align-items: start;
@@ -124,16 +125,19 @@
       {
         margin-bottom: 4px;
         color: white;
+        min-width: 200px;
       }
       .container .middle_title h3
       {
         margin-bottom: 50px;
         color: white;
+        min-width: 200px;
       }
       .container .middle_title p
       {
         font-size: 30px;
         color: white;
+        min-width: 200px;
       }
 
     </style>

@@ -126,10 +126,10 @@
                 %>
 
             <tr><td><%=num%> </td>
-                <td><a href="noticeContent.jsp?id=<%=rs.getInt("id")%>"><%=rs.getString("title")%></a></td>
-                <td><%=rs.getString("writer")%> </td>
-                <td><%=rs.getString("createDay")%> </td>
-                <td><%=rs.getInt("readcount")%> </td></tr>
+                <td><a href="noticeContent.jsp?id=<%=rs.getInt("board_index")%>"><%=rs.getString("board_title")%></a></td>
+                <td><%=rs.getString("board_studentID")%> </td>
+                <td><%=rs.getString("board_title")%> </td>
+                <td><%=rs.getString("board_title")%> </td></tr>
                 <%
                     num++;
                 }
