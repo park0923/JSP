@@ -5,6 +5,7 @@
   Time: 오후 7:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="mysql.ReservationDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -44,7 +45,7 @@
                 </a>
             </li>
             <li class="list">
-                <a href="/reservation/reservationcheck.jsp">
+                <a href="/member/reservationcheck.jsp">
                     <span class="icon"><ion-icon name="search"></ion-icon></span>
                     <span class="title">예약 조회</span>
                 </a>

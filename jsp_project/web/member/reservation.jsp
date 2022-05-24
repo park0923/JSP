@@ -15,12 +15,22 @@
 <script type="text/javascript" src="reservation/selectTime.js"></script>
 <body>
 <%
+  Date date = new Date();
+  SimpleDateFormat simpleDate = new SimpleDateFormat("HHmm");
+  String strTime = simpleDate.format(date);
   if (session.getAttribute("isLogin") == null) {
 %>
-<script>
-  alert("로그인이 필요합니다.");
-  location.href = "loginForm.jsp";
-</script>
+    <script>
+      alert("로그인이 필요합니다.");
+      location.href = "loginForm.jsp";
+    </script>
+<%
+  }else if(Integer.parseInt(strTime)>24430){
+%>
+    <script>
+      alert("예약 가능시간이 끝났습니다.");
+      location.href = "mainForm.jsp";
+    </script>
 <%
   }
 %>
@@ -46,7 +56,7 @@
         </a>
       </li>
       <li class="list">
-        <a href="/member/reservation/reservationcheck.jsp">
+        <a href="/member/reservationcheck.jsp">
           <span class="icon"><ion-icon name="search"></ion-icon></span>
           <span class="title">예약 조회</span>
         </a>
@@ -85,18 +95,17 @@
       <section>
         <label for="start">Start date:</label>
         <%
-          Date date = new Date();
-          SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-          String strDate = simpleDate.format(date);
+          SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
+          String strDate = sDate.format(date);
         %>
 
-        <form name="input" method="post" action="reservation/seatSelection.jsp">
+        <form name="reservation_form" method="post" action="reservation/seatSelection.jsp">
           <input type="date" id="start" name="date"
                  value=<%= strDate%>
                          min="2022-05-13" max="2030-12-31">
           <select name="startTime" onchange="categoryChange(this)">
             <option value="0">시작 시간 선택</option>
-            <option value="09:00">09:00</option>
+            <option value="9:00">9:00</option>
             <option value="10:00">10:00</option>
             <option value="11:00">11:00</option>
             <option value="12:00">12:00</option>
@@ -109,15 +118,23 @@
             <option value="19:00">19:00</option>
           </select>
 
-          <select name="endTime" id="changeTime">
+          <select name="endTime" id="changeTime" onchange="disabledRoom(this)">
             <option value="">종료 시간 선택</option>
             <option>시작 시간을 선택하세요</option>
+          </select>
+
+          <select id="Room" name="lectureRoom">
+            <option value="0">강의실 선택</option>
+            <option value="915">915</option>
+            <option value="916">916</option>
+            <option value="918">918</option>
+            <option value="911">911</option>
           </select>
 
           <br>
           인원:
           <input type="number" name="person" min="1" max="10" step="1" value="1">
-          <input type="submit" value="선택">
+          <input type="button" value="선택" onclick="confirmTime()">
         </form>
       </section>
     </div>
@@ -143,6 +160,19 @@
   }
   list.forEach((item) =>
           item.addEventListener('click', activeLink));
+
+  function confirmTime(){
+    var room = document.getElementById("Room");
+    if(document.reservation_form.startTime.value === "0"){
+      alert("시작 시간을 선택하세요");
+      return;
+    }
+    if(document.reservation_form.lectureRoom.value === "0" && room.disabled == false){
+      alert("강의실을 선택하세요");
+      return;
+    }
+    document.reservation_form.submit();
+  }
 </script>
 </body>
 </html>

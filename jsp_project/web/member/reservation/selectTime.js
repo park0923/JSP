@@ -12,19 +12,59 @@ function categoryChange(e) {
     var endTime_10 = ["19:00","20:00","21:00"];
     var endTime_11 = ["20:00","21:00"];
     var target = document.getElementById("changeTime");
+    var room = document.getElementById("Room");
 
-    if(e.value == "0") var d = endTime_0;
-    else if(e.value == "09:00") var d = endTime_1;
-    else if(e.value == "10:00") var d = endTime_2;
-    else if(e.value == "11:00") var d = endTime_3;
-    else if(e.value == "12:00") var d = endTime_4;
-    else if(e.value == "13:00") var d = endTime_5;
-    else if(e.value == "14:00") var d = endTime_6;
-    else if(e.value == "15:00") var d = endTime_7;
-    else if(e.value == "16:00") var d = endTime_8;
-    else if(e.value == "17:00") var d = endTime_9;
-    else if(e.value == "18:00") var d = endTime_10;
-    else if(e.value == "19:00") var d = endTime_11;
+    if(e.value == "0") {
+        var d = endTime_0;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "9:00") {
+        var d = endTime_1;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "10:00") {
+        var d = endTime_2;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "11:00") {
+        var d = endTime_3;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "12:00") {
+        var d = endTime_4;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "13:00") {
+        var d = endTime_5;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "14:00") {
+        var d = endTime_6;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "15:00") {
+        var d = endTime_7;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "16:00") {
+        var d = endTime_8;
+        room.removeAttribute("disabled");
+    }
+    else if(e.value == "17:00") {
+        var d = endTime_9;
+        room.disabled = true;
+        alert("강의실을 선택할 수 없습니다.");
+    }
+    else if(e.value == "18:00") {
+        var d = endTime_10;
+        room.disabled = true;
+        alert("강의실을 선택할 수 없습니다.");
+    }
+    else if(e.value == "19:00") {
+        var d = endTime_11;
+        room.disabled = true;
+        alert("강의실을 선택할 수 없습니다.");
+    }
 
     target.options.length = 0;
 
@@ -33,5 +73,16 @@ function categoryChange(e) {
         opt.name = d[x];
         opt.innerHTML = d[x];
         target.appendChild(opt);
+    }
+}
+
+function disabledRoom(e){
+    var room = document.getElementById("Room");
+    var endValue = Number(e.value.substr(0,2));
+    console.log(endValue);
+    if(endValue>=18){
+        room.disabled = true;
+        room.value="강의실 선택";
+        alert("강의실을 선택할 수 없습니다.");
     }
 }

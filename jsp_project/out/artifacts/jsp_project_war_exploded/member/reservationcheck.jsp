@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>예약 조회</title>
-    <link rel="stylesheet" type="text/css" href="reservationcheck.css">
+    <link rel="stylesheet" type="text/css" href="reservation/reservationcheck.css">
 </head>
 <body>
 <%
@@ -27,7 +27,7 @@
         <ul>
             <li class="list">
                 <a href="/member/mainForm.jsp">
-                    <img src="../../images/symbol.png" class="symbol" />
+                    <img src="../images/symbol.png" class="symbol" />
                     <span class="title">컴퓨터소프트웨어공학과</span>
                 </a>
             </li>
@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li class="list actives">
-                <a href="/member/reservation/reservationcheck.jsp">
+                <a href="/member/reservationcheck.jsp">
                     <span class="icon"><ion-icon name="search"></ion-icon></span>
                     <span class="title">예약 조회</span>
                 </a>
@@ -72,7 +72,7 @@
             <div class="user">
                 <ul>
                     <li> <%=session.getAttribute("name")%></li>
-                    <li><a href="../../home/logout.jsp">로그아웃</a></li>
+                    <li><a href="../home/logout.jsp">로그아웃</a></li>
                 </ul>
             </div>
         </div>
