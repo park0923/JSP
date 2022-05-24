@@ -90,7 +90,7 @@
         </a>
       </li>
       <li class="list">
-        <a href="/member/inquiry.jsp">
+        <a href="/member/inquiry/inquiry.jsp">
           <span class="icon"><ion-icon name="chatbox-ellipses"></ion-icon></span>
           <span class="title">문의하기</span>
         </a>

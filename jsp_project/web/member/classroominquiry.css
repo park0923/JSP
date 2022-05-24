@@ -262,3 +262,8 @@ body
     grid-gap: 30px;
     margin-top: 10px;
 }
+.btn_seat  button:hover,
+.btn_seat button.actives
+{
+    background: #287bff;
+}

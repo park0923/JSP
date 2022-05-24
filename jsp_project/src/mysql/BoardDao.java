@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class BoardDao {
     public static int NOTICE_EXISTENT = 1;
@@ -16,6 +18,8 @@ public class BoardDao {
     public static int NOTICE_WRITE_SUCCESS = 3;
     public static int NOTICE_DELETE_SUCCESS = 4;
     public static int NOTICE_LOGIN_FAIL = 5;
+    public static int NOTICE_UPDATE_SUCCESS = 6;
+    public static int NOTICE_UPDATE_FAIL = 7;
     private static BoardDao instance = new BoardDao();
     public static BoardDao getInstance() { return instance; }
 
@@ -26,14 +30,14 @@ public class BoardDao {
         int id = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String query = "SELECT max(id) from board";
+        String query = "SELECT max(board_index) from board";
         try{
             conn = DatabaseUtil.getConnection();
             if(conn == null )return id;
             pstmt=conn.prepareStatement(query);
             ResultSet resultSet = pstmt.executeQuery();
             if(resultSet.next()){
-                id=resultSet.getInt("max(id)")+1;
+                id=resultSet.getInt("max(board_index)")+1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,7 +52,7 @@ public class BoardDao {
         return id;
     }
 
-    public int insertBoard(BoardDto boardDto, String name){
+    public int insertBoard(String title, String inquiry, String id, String classification){
         int rt = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -59,11 +63,11 @@ public class BoardDao {
             if (conn == null) return rt;
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, getNoticeId());
-            pstmt.setString(2, boardDto.getTitle());
-            pstmt.setString(3, boardDto.getContents());
-            pstmt.setString(4, name);
-            pstmt.setInt(5, 0);
-            pstmt.setString(6, now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            pstmt.setString(2, title);
+            pstmt.setString(3, inquiry);
+            pstmt.setString(4, id);
+            pstmt.setString(5, classification);
+            pstmt.setString(6, null);
             pstmt.setString(7, now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             pstmt.executeUpdate();
             rt = NOTICE_WRITE_SUCCESS;
@@ -101,12 +105,88 @@ public class BoardDao {
         return rs;
     }
 
+    public ArrayList getBoardInquiry(String studentID){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<BoardDto> boardDto = new ArrayList<>();
+        String query = "SELECT * FROM board WHERE board_studentID = ?";
+
+        try{
+            conn = DatabaseUtil.getConnection();
+
+            if (conn == null) return boardDto;
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,studentID);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                boardDto.add(new BoardDto(rs.getInt("board_index"),
+                        rs.getString("board_title"),
+                        rs.getString("board_inquiry"),
+                        rs.getString("board_studentID"),
+                        rs.getString("board_classification"),
+                        rs.getString("board_answer"),
+                        rs.getDate("create_date")
+                    ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return boardDto;
+    }
+
+    public ArrayList getBoardNotice(String clasification){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<BoardDto> boardDto = new ArrayList<>();
+        String query = "SELECT * FROM board WHERE board_classification = ?";
+
+        try{
+            conn = DatabaseUtil.getConnection();
+
+            if (conn == null) return boardDto;
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,clasification);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                boardDto.add(new BoardDto(rs.getInt("board_index"),
+                        rs.getString("board_title"),
+                        rs.getString("board_inquiry"),
+                        rs.getString("board_studentID"),
+                        rs.getString("board_classification"),
+                        rs.getString("board_answer"),
+                        rs.getDate("create_date")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return boardDto;
+    }
+
     public BoardDto getBoardId(String id){
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         BoardDto boardDto = null;
-        String query = "SELECT * FROM board WHERE id = ?";
+        String query = "SELECT * FROM board WHERE board_index = ?";
 
         try{
             conn = DatabaseUtil.getConnection();
@@ -116,13 +196,13 @@ public class BoardDao {
             pstmt.setInt(1,Integer.parseInt(id));
             rs = pstmt.executeQuery();
             if(rs.next()){
-                boardDto = new BoardDto(rs.getInt("id"),
-                rs.getString("title"),
-                rs.getString("contents"),
-                rs.getString("writer"),
-                rs.getInt("readcount"),
-                rs.getDate("createDay"),
-                rs.getDate("updateDay"));
+                boardDto = new BoardDto(rs.getInt("board_index"),
+                rs.getString("board_title"),
+                rs.getString("board_inquiry"),
+                rs.getString("board_studentID"),
+                rs.getString("board_classification"),
+                rs.getString("board_answer"),
+                rs.getDate("create_date"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,7 +222,7 @@ public class BoardDao {
         int rt = 0;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String query = "DELETE FROM board WHERE id = ?";
+        String query = "DELETE FROM board WHERE board_index = ?";
 
         try{
             conn = DatabaseUtil.getConnection();
@@ -155,6 +235,37 @@ public class BoardDao {
             e.printStackTrace();
         } finally {
             try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rt;
+    }
+
+    public int updateinquiry(String board_index, String body){
+        int rt = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String query = "UPDATE board SET board_inquiry=? WHERE board_index = ?";
+
+        try {
+            conn = DatabaseUtil.getConnection();
+            if (conn == null) return rt;
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, body);
+            pstmt.setString(2, board_index);
+            pstmt.executeUpdate();
+            rt = NOTICE_UPDATE_SUCCESS;
+        } catch (SQLException e) {
+            rt = NOTICE_UPDATE_FAIL;
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
                 if (conn != null) conn.close();
             } catch (Exception e) {

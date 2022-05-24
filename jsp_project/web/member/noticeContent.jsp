@@ -21,23 +21,21 @@
                     BoardDao dao = BoardDao.getInstance();
                     BoardDto boardDto = dao.getBoardId(request.getParameter("id"));
             %>
-        <tr><td><%=boardDto.getId()%> </td>
-            <td><%=boardDto.getTitle()%> </td>
-            <td><%=boardDto.getContents()%></td>
-            <td><%=boardDto.getWriter()%> </td>
-            <td><%=boardDto.getCreateDay()%> </td>
-            <td><%=boardDto.getUpdateDay()%> </td>
-            <td><%=boardDto.getReedCount()%> </td>
+        <tr><td><%=boardDto.getBoard_index()%> </td>
+            <td><%=boardDto.getBoard_title()%> </td>
+            <td><%=boardDto.getBoard_inquiry()%></td>
+            <td><%=boardDto.getB0ard_studentID()%> </td>
+            <td><%=boardDto.getCreate_date()%> </td>
         </tr>
         <button onclick="location.href='notice.jsp'">뒤로 가기</button>
 <%
-           if(session.getAttribute("name").equals(boardDto.getWriter())){
+           if(session.getAttribute("name").equals(boardDto.getB0ard_studentID())){
 %>
-        <button onclick="location.href='deleteProcess.jsp?id=<%=boardDto.getId()%>'">삭제하기</button>
+        <button onclick="location.href='deleteProcess.jsp?id=<%=boardDto.getBoard_index()%>'">삭제하기</button>
         <%
             }else{
                System.out.println(session.getAttribute("name"));
-               System.out.println(boardDto.getWriter());
+               System.out.println(boardDto.getB0ard_studentID());
             }
         %>
 </div>
