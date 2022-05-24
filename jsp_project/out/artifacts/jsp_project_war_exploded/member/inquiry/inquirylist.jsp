@@ -1,7 +1,3 @@
-<%@ page import="mysql.BoardDao" %>
-<%@ page import="beans.BoardDto" %>
-<%@ page import="java.util.ArrayList" %>
-
 <%--
   Created by IntelliJ IDEA.
   User: wndgk
@@ -10,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="mysql.BoardDao" %>
+<%@ page import="beans.BoardDto" %>
+<%@ page import="java.util.ArrayList"%>
 <jsp:useBean id="board" class="beans.BoardDto"/>
 <html>
 <head>
@@ -106,12 +105,22 @@
             background: var(--blue);
             color: var(--white);
         }
+        .details .inquiryBox table tr td .view
+        {
+            text-decoration: none;
+            color:  var(--black1);
+        }
+        .details .inquiryBox table tr td .view:hover
+        {
+            text-decoration: none;
+            color:  var(--white);
+        }
         .details .inquiryBox table tr td
         {
             padding: 10px;
             text-align: center;
         }
-        .details .inquiryBox table tbody tr td:nth-child(5)
+        .details .inquiryBox table tbody tr td:nth-child(6)
         {
             text-align: end;
         }
@@ -191,6 +200,7 @@
                         <td> 제목 </td>
                         <td> 작성자 </td>
                         <td> 작성일 </td>
+                        <td> 분류</td>
                     </tr>
 
                     </thead>
@@ -206,9 +216,12 @@
                     %>
                     <tr>
                         <td><%=num%> </td>
-                        <td><a href="inquiryview.jsp?id=<%=narr.get(i).getBoard_index()%>"><%=narr.get(i).getBoard_title()%></a></td>
+                        <td>
+                            <a class="view" href="inquiryview.jsp?id=<%=narr.get(i).getBoard_index()%>"><%=narr.get(i).getBoard_title()%></a>
+                        </td>
                         <td><%=narr.get(i).getB0ard_studentID()%> </td>
                         <td><%=narr.get(i).getCreate_date()%></td>
+                        <td>공지</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -220,12 +233,13 @@
                     <tr>
                         <td><%=num%> </td>
                         <td>
-                            <a href="inquiryview.jsp?id=<%=uarr.get(j).getBoard_index()%>">
+                            <a class="view" href="inquiryview.jsp?id=<%=uarr.get(j).getBoard_index()%>">
                                 <%=uarr.get(j).getBoard_title()%>
                             </a>
                         </td>
                         <td><%=uarr.get(j).getB0ard_studentID()%> </td>
                         <td><%=uarr.get(j).getCreate_date()%></td>
+                        <td>문의</td>
                         <td>
                             <a href="/member/inquiry/inquiryupdate.jsp?id=<%=uarr.get(j).getBoard_index()%>" class="btn_up">수정</a>
                         </td>

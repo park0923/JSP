@@ -22,7 +22,7 @@
     <head>
         <title>Title</title>
         <script src="../form.js"></script>
-        <link rel="stylesheet" type="text/css" href="/member/mypage.css">
+        <link rel="stylesheet" type="text/css" href="/member/mypage/mypage.css">
     </head>
     <body>
     <div class="container">
