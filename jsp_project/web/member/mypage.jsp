@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>마이페이지</title>
-    <link rel="stylesheet" type="text/css" href="/member/mypage.css">
+    <link rel="stylesheet" type="text/css" href="/member/mypage/mypage.css">
 </head>
 <body>
 <%
