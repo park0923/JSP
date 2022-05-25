@@ -42,7 +42,11 @@
     session.setAttribute("id", user.getId());
     session.setAttribute("position", dao.getPosition(user.getId()));
     session.setAttribute("isLogin", true);
-    response.sendRedirect("../member/mainForm.jsp");
-
+    if(dao.getPosition(user.getId()).equals("user")){
+        response.sendRedirect("../member/mainForm.jsp");
+    }
+    else{
+        response.sendRedirect("../../admin/adminMainForm.jsp");
+    }
   }
 %>

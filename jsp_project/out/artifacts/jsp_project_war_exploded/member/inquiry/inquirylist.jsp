@@ -8,7 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="mysql.BoardDao" %>
 <%@ page import="beans.BoardDto" %>
+<%@ page import="mysql.UserDao" %>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="java.sql.ResultSet" %>
 <jsp:useBean id="board" class="beans.BoardDto"/>
 <html>
 <head>
@@ -206,13 +208,56 @@
                     </thead>
                     <tbody>
                     <%
+                        System.out.println(session.getAttribute("id"));
+                        UserDao udao = UserDao.getInstance();
                         String studentid = (String) session.getAttribute("id");
                         BoardDao dao = BoardDao.getInstance();
+                        ResultSet rs = dao.getBoard();
                         ArrayList<BoardDto> uarr = dao.getBoardInquiry(studentid);
                         ArrayList<BoardDto> narr = dao.getBoardNotice("notice");
-
-                        int num=1;
-                        for (int i = 0; i < narr.size(); i++){
+                        ArrayList<BoardDto> iarr = dao.getBoardNotice("inquiry");
+                        if (udao.getPosition((String)session.getAttribute("id")).equals("admin")){
+                            int num = 1;
+                            for (int i = 0; i < narr.size(); i++){
+                    %>
+                    <tr>
+                        <td><%=num%> </td>
+                        <td>
+                            <a class="view" href="inquiryview.jsp?id=<%=narr.get(i).getBoard_index()%>"><%=narr.get(i).getBoard_title()%></a>
+                        </td>
+                        <td><%=narr.get(i).getB0ard_studentID()%> </td>
+                        <td><%=narr.get(i).getCreate_date()%></td>
+                        <td>공지</td>
+                        <td>
+                            <a href="/member/inquiry/inquiryupdate.jsp?id=<%=narr.get(i).getBoard_index()%>" class="btn_up">수정</a>
+                        </td>
+                        <td>
+                            <a href="/member/inquiry/inquirydeleteprocess.jsp?id=<%=narr.get(i).getBoard_index()%>" class="btn_del">삭제</a>
+                        </td>
+                    </tr>
+                    <%
+                            num++;
+                        }
+                        for(int j = 0; j < iarr.size(); j++){
+                    %>
+                    <tr>
+                        <td><%=num%> </td>
+                        <td>
+                            <a class="view" href="inquiryview.jsp?id=<%=iarr.get(j).getBoard_index()%>"><%=iarr.get(j).getBoard_title()%></a>
+                        </td>
+                        <td><%=iarr.get(j).getB0ard_studentID()%> </td>
+                        <td><%=iarr.get(j).getCreate_date()%></td>
+                        <td>문의</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <%
+                                num++;
+                            }
+                        }
+                        else{
+                            int num=1;
+                            for (int i = 0; i < narr.size(); i++){
                     %>
                     <tr>
                         <td><%=num%> </td>
@@ -226,9 +271,9 @@
                         <td></td>
                     </tr>
                     <%
-                            num++;
-                        }
-                        for(int j = 0; j < uarr.size(); j++){
+                                num++;
+                            }
+                            for(int j = 0; j < uarr.size(); j++){
                     %>
                     <tr>
                         <td><%=num%> </td>
@@ -248,7 +293,8 @@
                         </td>
                     </tr>
                     <%
-                            num++;
+                                num++;
+                            }
                         }
                     %>
                     </tbody>
