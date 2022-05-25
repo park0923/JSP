@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/web/member/admin_modify_process.jsp" value="file://$PROJECT_DIR$/web/member" />
         <entry key="file://$PROJECT_DIR$/web/member/change_password_process.jsp" value="file://$PROJECT_DIR$/web/member" />
+        <entry key="file://$PROJECT_DIR$/web/member/inquiry/inquirylist.jsp" value="file://$PROJECT_DIR$/web/member/inquiry" />
         <entry key="file://$PROJECT_DIR$/web/member/join.jsp" value="file://$PROJECT_DIR$/web/member" />
         <entry key="file://$PROJECT_DIR$/web/member/login.jsp" value="file://$PROJECT_DIR$/web/member" />
         <entry key="file://$PROJECT_DIR$/web/member/mainForm.jsp" value="file://$PROJECT_DIR$/web/member" />

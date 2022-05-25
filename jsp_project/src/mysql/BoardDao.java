@@ -20,6 +20,8 @@ public class BoardDao {
     public static int NOTICE_LOGIN_FAIL = 5;
     public static int NOTICE_UPDATE_SUCCESS = 6;
     public static int NOTICE_UPDATE_FAIL = 7;
+    public static int ANSWER_UPDATE_SUCCESS = 8;
+    public static int ANSWER_UPDATE_FAIL = 9;
     private static BoardDao instance = new BoardDao();
     public static BoardDao getInstance() { return instance; }
 
@@ -68,7 +70,7 @@ public class BoardDao {
             pstmt.setString(4, id);
             pstmt.setString(5, classification);
             pstmt.setString(6, null);
-            pstmt.setString(7, now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            pstmt.setString(7, now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             pstmt.executeUpdate();
             rt = NOTICE_WRITE_SUCCESS;
         } catch (SQLException e) {
@@ -257,11 +259,42 @@ public class BoardDao {
             if (conn == null) return rt;
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, body);
-            pstmt.setString(2, board_index);
+            pstmt.setInt(2, Integer.parseInt(board_index));
             pstmt.executeUpdate();
             rt = NOTICE_UPDATE_SUCCESS;
         } catch (SQLException e) {
             rt = NOTICE_UPDATE_FAIL;
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rt;
+    }
+
+    public int updateanswer(String board_index, String answer){
+        int rt = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String query = "UPDATE board SET board_answer=? WHERE board_index = ?";
+
+        try {
+            conn = DatabaseUtil.getConnection();
+            if (conn == null) return rt;
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, answer);
+            pstmt.setInt(2, Integer.parseInt(board_index));
+            pstmt.executeUpdate();
+            rt = ANSWER_UPDATE_SUCCESS;
+        } catch (SQLException e) {
+            rt = ANSWER_UPDATE_FAIL;
             e.printStackTrace();
         } finally {
             try {
