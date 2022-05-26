@@ -9,13 +9,6 @@
 <%@ page import="mysql.ReservationDao" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script>
-    const attString = window.localStorage.getItem('seatList');
-    function seatArrayLength(){
-        return attString.length;
-    }
-</script>
-
 <%
     String[] timeArray = request.getParameter("startTime").split(" ~ ");
     String[] seatArray = request.getParameterValues("seatList");

@@ -25,61 +25,9 @@
         <link rel="stylesheet" type="text/css" href="/member/mypage/mypage.css">
     </head>
     <body>
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li class="list">
-                    <a href="/member/mainForm.jsp">
-                        <img src="../../images/symbol.png" class="symbol" />
-                        <span class="title">컴퓨터소프트웨어공학과</span>
-                    </a>
-                </li>
-                <li class="list actives">
-                    <a href="/member/mypage.jsp">
-                        <span class="icon"><ion-icon name="person"></ion-icon></span>
-                        <span class="title">마이페이지</span>
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="/member/reservation.jsp">
-                        <span class="icon"><ion-icon name="today"></ion-icon></span>
-                        <span class="title">강의실 예약</span>
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="/reservation/reservationcheck.jsp">
-                        <span class="icon"><ion-icon name="search"></ion-icon></span>
-                        <span class="title">예약 조회</span>
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="/member/classroominquiry.jsp">
-                        <span class="icon"><ion-icon name="calendar-clear"></ion-icon></span>
-                        <span class="title">강의실 조회</span>
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="/member/inquiry/inquiry.jsp">
-                        <span class="icon"><ion-icon name="chatbox-ellipses"></ion-icon></span>
-                        <span class="title">문의하기</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
 
+    <%@ include file="../../navigation.jsp" %>
         <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
-                <div class="user">
-                    <ul>
-                        <li> <%=session.getAttribute("name")%></li>
-                        <li><a href="../../home/logout.jsp">로그아웃</a></li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="details">
                 <form action="memberUpdateForm.jsp" method="post" name="modify_form">
                     <table>

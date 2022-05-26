@@ -9,4 +9,5 @@
 <%
     session.invalidate();
     response.sendRedirect("loginForm.jsp");
+    System.out.println("zz");
 %>
