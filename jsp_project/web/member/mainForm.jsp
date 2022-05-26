@@ -24,16 +24,9 @@
     }
 %>
 <div class="container">
-    <div class="nav">
-        <%@ include file="../navigation.jsp" %>
-    </div>
-    <div class="header">
-        <%@ include file="../header.jsp" %>
-    </div>
+    <%@ include file="../navigation.jsp" %>
 
-
-
-    <div class="mains">
+    <div class="main">
         <div class="cardBox">
             <div class="card">
                 <div>
