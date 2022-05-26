@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>마이페이지</title>
-    <link rel="stylesheet" type="text/css" href="mypage/mypage.css">
+    <link rel="stylesheet" type="text/css" href="/member/mypage/mypage.css">
 </head>
 <body>
 <%
@@ -22,26 +22,12 @@
 <%
     }
 %>
-<div class="container">
-    <div class="nav">
-        <%@ include file="../navigation.jsp" %>
-    </div>
-    <div class="header">
-        <%@ include file="../header.jsp" %>
-    </div>
-
-    <div class="mains">
-        <div class="details">
-            <div class="title">
-                <h1>회원정보 수정</h1>
-                <hr/>
-            </div>
-        </div>
-        <button class="custom-btn btn-1"  style="margin-left: 500px" Onclick="location.href='checkPwForm.jsp'">회원정보 수정</button>
-
-    </div>
+<%@ include file="../navigation.jsp" %>
+<div class="details">
+    <button onclick="location.href='./mypage/checkPwForm.jsp'">회원정보 수정</button>
 </div>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<div class="main">
+
+</div>
 </body>
 </html>
