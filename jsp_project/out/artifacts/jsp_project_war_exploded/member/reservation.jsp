@@ -11,6 +11,88 @@
 <head>
     <title>강의실 예약</title>
     <link rel="stylesheet" type="text/css" href="/member/reservation/reservation.css">
+    <style>
+        .details{
+          left: 440px;
+          top: 40px;
+        }
+        .details .reservationDate{
+          position: relative;
+          width: 700px;
+          height: 550px;
+          padding: 30px;
+          margin-top: 50px;
+          margin-left: 30px;
+          border-radius: 20px;
+          box-shadow: 0 7px 25px rgba(0,0,0,0.5);
+        }
+        .reservationHeader h1{
+          font-weight: 600;
+          color: black;
+          text-align: center;
+          height: 70px;
+          padding-top: 10px;
+        }
+        .reservationHeader{
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+        .selectDate{
+          padding: 10px;
+          display: flex;
+          font-size: initial;
+          font-weight: bold;
+        }
+        .rs{
+          display: inline-block;
+          padding: 5px;
+        }
+        .selectStartTime h3{
+          font-size: initial;
+          margin-bottom: 10px;
+          margin-left: 6px;
+          margin-top: 20px;
+        }
+        .selectStartTime{
+          padding: 5px;
+          display: inline-block;
+        }
+        .selectEndTime{
+          padding: 5px;
+          display: inline-block;
+        }
+        .selectLectureRoom{
+          padding: 5px;
+
+        }
+        .selectLectureRoom h3{
+          margin-bottom: 10px;
+          font-size: initial;
+          margin-left: 6px;
+          margin-top: 25px;
+        }
+        .selectPerson{
+          padding: 5px;
+        }
+        .selectPerson h3{
+          margin-bottom: 10px;
+          font-size: initial;
+          margin-left: 6px;
+          margin-top: -5px;
+        }
+        .selectbtn{
+          margin-left: 280px;
+          padding: 10px 20px;
+          background: darkblue;
+          text-decoration: none;
+          color: var(--white);
+          border-radius: 6px;
+          border: solid 0px;
+          font-size: initial;
+          font-weight: bold;
+        }
+
+    </style>
 </head>
 <script type="text/javascript" src="reservation/selectTime.js"></script>
 <body>
@@ -88,12 +170,22 @@
         </ul>
       </div>
     </div>
+  </div>
 
 
 
     <div class="details">
-      <section>
-        <label for="start">Start date:</label>
+        <div class="reservationDate">
+          <div class="reservationHeader">
+            <h1>강의실 예약</h1>
+            <hr style="border: solid 2px darkblue; margin-bottom: 3px">
+            <hr style="border: solid 0.5px black">
+            <Br>
+          </div>
+
+          <div class="selectDate">
+            <label for="start" style="margin-left: 6px">예약 날짜:</label>
+          </div>
         <%
           SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
           String strDate = sDate.format(date);
@@ -102,7 +194,12 @@
         <form name="reservation_form" method="post" action="reservation/seatSelection.jsp">
           <input type="date" id="start" name="date"
                  value=<%= strDate%>
-                         min="2022-05-13" max="2030-12-31">
+                         min="2022-05-13" max="2030-12-31" style="margin-left: 10px">
+        <Br>
+
+          <span class="rs">
+        <div class="selectStartTime">
+          <h3>시간 선택 : </h3>
           <select name="startTime" onchange="categoryChange(this)">
             <option value="0">시작 시간 선택</option>
             <option value="9:00">9:00</option>
@@ -117,12 +214,15 @@
             <option value="18:00">18:00</option>
             <option value="19:00">19:00</option>
           </select>
-
+        </div>
+          <div class="selectEndTime">
           <select name="endTime" id="changeTime" onchange="disabledRoom(this)">
             <option value="">종료 시간 선택</option>
             <option>시작 시간을 선택하세요</option>
           </select>
-
+          </div>
+          <div class="selectLectureRoom">
+            <h3>강의실 선택 : </h3>
           <select id="Room" name="lectureRoom">
             <option value="0">강의실 선택</option>
             <option value="915">915</option>
@@ -130,16 +230,20 @@
             <option value="918">918</option>
             <option value="911">911</option>
           </select>
-
+          </div>
+          <div class="selectPerson">
           <br>
-          인원:
+          <h3>인원:</h3>
           <input type="number" name="person" min="1" max="10" step="1" value="1">
-          <input type="button" value="선택" onclick="confirmTime()">
+            <br>
+          <input type="button" value="다음" onclick="confirmTime()" class="selectbtn" style="margin-top: 30px;">
+          </div>
+          </span>
         </form>
-      </section>
-    </div>
+
+        </div>
   </div>
-</div>
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script>
