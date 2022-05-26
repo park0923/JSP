@@ -31,7 +31,7 @@
     <%
         if(session.getAttribute("position").equals("admin")){
     %>
-            <button onclick="location.href='member_Management.jsp'">회원관리</button>
+            <button onclick="location.href='memberManagement.jsp'">회원관리</button>
     <%
         }
     %>
