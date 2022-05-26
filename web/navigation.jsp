@@ -181,7 +181,7 @@
             <li class="list">
                 <a href="/member/mypage.jsp">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <span class="title">마이페이지</span>
+                    <span class="title">마이페이지..</span>
                 </a>
             </li>
             <%
