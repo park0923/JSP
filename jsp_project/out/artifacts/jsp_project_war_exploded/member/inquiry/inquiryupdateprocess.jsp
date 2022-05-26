@@ -41,10 +41,20 @@
     }
     else if (udto.getPosition().equals("admin")){
         if(bdao.updateinquiry(id, body) == BoardDao.NOTICE_UPDATE_SUCCESS){
-
-        }
 %>
-
+            <script>
+                alert("수정 완료");
+                location.href="/member/inquiry/inquirylist.jsp"
+            </script>
 <%
+        }
+        else{
+%>
+            <script>
+                alert("수정 중 오류가 발생했습니다.");
+                location.href="/member/inquiry/inquirylist.jsp"
+            </script>
+<%
+        }
     }
 %>
